@@ -43,9 +43,12 @@ export default function VideoPage() {
           {video.title}
         </h1>
 
-        <p className="text-gray-500 text-sm mt-1">
+{/* ADS HERE */}
+{/* <AdSense slot="5705189214" /> */}
+
+        {/* <p className="text-gray-500 text-sm mt-1">
           {new Date(video.createdAt).toLocaleDateString()}
-        </p>
+        </p> */}
 
       </div>
 

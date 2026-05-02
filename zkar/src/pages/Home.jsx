@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getVideos } from "../api/videoApi";
 import VideoCard from "../components/VideoCard";
 import Layout from "../layout/Layout";
+import AdSense from "../components/AdSense";
 
 export default function Home() {
   const [videos, setVideos] = useState([]);
@@ -36,6 +37,12 @@ return (
     <VideoCard key={video.id} video={video} />
   ))}
 </div>
+{/* ADS BELOW GRID */}
+{/* <AdSense slot="5705189214" /> */}
+<AdSense
+  slotMobile="5705189214"
+  slotDesktop="5705189214"
+/>
 
         {/* PAGINATION */}
         <div className="flex justify-center mt-6 gap-2">
