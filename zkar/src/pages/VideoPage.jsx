@@ -1,29 +1,54 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getVideoById } from "../api/videoApi";
+import { useEffect, useState } from "react";
+import { getVideos } from "../api/videoApi";
 import VideoPlayer from "../components/VideoPlayer";
+import Layout from "../layout/Layout";
 
 export default function VideoPage() {
   const { id } = useParams();
   const [video, setVideo] = useState(null);
 
   useEffect(() => {
-    load();
+    loadVideo();
   }, []);
 
-  const load = async () => {
-    const data = await getVideoById(id);
-    setVideo(data);
+  const loadVideo = async () => {
+    try {
+      const data = await getVideos(0, 100);
+      const found = data.content.find(v => v.id == id);
+      setVideo(found);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
-  if (!video) return <p className="p-4">Loading...</p>;
+  if (!video) {
+    return (
+      <Layout>
+        <div className="p-6">Loading...</div>
+      </Layout>
+    );
+  }
 
   return (
-    <div className="p-4 max-w-4xl mx-auto">
-      <VideoPlayer url={video.streamUrl} />
+    <Layout>
 
-      <h1 className="text-xl font-bold mt-4">{video.title}</h1>
-      <p className="text-gray-600">{video.description}</p>
-    </div>
+      <div className="p-6 max-w-5xl mx-auto">
+
+        {/* VIDEO PLAYER */}
+        <VideoPlayer url={video.streamUrl} />
+
+        {/* INFO */}
+        <h1 className="text-2xl font-bold mt-4">
+          {video.title}
+        </h1>
+
+        <p className="text-gray-500 text-sm mt-1">
+          {new Date(video.createdAt).toLocaleDateString()}
+        </p>
+
+      </div>
+
+    </Layout>
   );
 }

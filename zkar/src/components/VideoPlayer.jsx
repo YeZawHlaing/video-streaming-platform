@@ -1,31 +1,31 @@
+// src/components/VideoPlayer.jsx
 import Hls from "hls.js";
 import { useEffect, useRef } from "react";
 
 export default function VideoPlayer({ url }) {
-  const videoRef = useRef(null);
+  const videoRef = useRef();
 
   useEffect(() => {
     if (!url) return;
 
     const video = videoRef.current;
-    let hls;
 
     if (Hls.isSupported()) {
-      hls = new Hls();
+      const hls = new Hls();
       hls.loadSource(url);
       hls.attachMedia(video);
+
+      return () => hls.destroy();
     } else {
       video.src = url;
     }
-
-    return () => hls && hls.destroy();
   }, [url]);
 
   return (
     <video
       ref={videoRef}
       controls
-      className="w-full aspect-video rounded-lg bg-black"
+      className="w-full rounded-xl"
     />
   );
 }

@@ -1,7 +1,8 @@
+// src/components/Footer.jsx
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white text-center p-4">
-      © 2026 VideoStream. All rights reserved.
-    </footer>
+    <div className="w-full bg-black text-center py-4 mt-10 text-sm text-white">
+      © {new Date().getFullYear()} ZKAR Video. All rights reserved.
+    </div>
   );
 }

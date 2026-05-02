@@ -1,12 +1,13 @@
+// src/components/Navbar.jsx
 export default function Navbar() {
   return (
-    <nav className="bg-black text-white px-4 py-3 flex justify-between items-center">
-      <h1 className="text-xl font-bold">VideoStream</h1>
+    <div className="w-full bg-black shadow-md px-6 py-4 flex justify-between items-center text-white">
+      <h1 className="text-xl font-bold">ZKAR Video</h1>
 
-      <input
-        placeholder="Search videos..."
-        className="px-3 py-1 rounded text-black w-40 md:w-80"
-      />
-    </nav>
+      <div className="flex gap-4">
+        <button className="hover:text-blue-500">Home</button>
+        <button className="hover:text-blue-500">Trending</button>
+      </div>
+    </div>
   );
 }
